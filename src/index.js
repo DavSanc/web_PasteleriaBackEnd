@@ -1,4 +1,5 @@
-const { dbConnection } = require('./config/mongo.config');
+const db = require ('./config/mongo.config')
+// const { dbConnection } = require('./config/mongo.config');
 const { route } = require('./routes/auth.routes');
 
 require( 'dotenv' ).config();
@@ -22,7 +23,11 @@ app.use( '/api/auth', require( './routes/auth.routes' ) );
 app.use( '/api/products', require( './routes/products.routes' ) );
 app.use( '/api/categories', require( './routes/categories.routes' ) );
 
-dbConnection();                 // Invoca la inicializacion de la base de datos
+
+db()
+    .then( () => console.log( `MongoDB se conecto correctamente` ) )
+    .catch( () => console.error( `MongoDB sufre un problema de conexión` ) );
+// dbConnection();                 // Invoca la inicializacion de la base de datos
 
 app.listen( PORT, () => {
     console.log( `Servidor lanzado en http://localhost:${ PORT }` );
