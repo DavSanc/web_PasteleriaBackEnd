@@ -20,7 +20,7 @@ module.exports = dbConnect;
 //         await mongoose.connect( process.env.DB_URI, {
 //             useNewUrlParser: true,
 //             useUnifiedTopology: true,
-//             // useCreateIndex: true
+//           useCreateIndex: true
 //         });
 
 //         console.log( 'Database initialized successfully' );
