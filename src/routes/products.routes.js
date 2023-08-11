@@ -47,6 +47,7 @@ router.post(
     validateToken,
     multerMiddleware.single( 'urlImage' ),
     createProduct
+    
 );
 
 // Ruta para actualizar producto (Restringida)
