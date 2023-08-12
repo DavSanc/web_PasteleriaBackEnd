@@ -5,7 +5,7 @@ const { hashSync, genSaltSync, compareSync } = require( 'bcryptjs' );
 const path = require( 'path' );
 
 const { generateToken } = require( '../helpers/jwt.js' );
-const { insertProduct, getAllProducts, getProductByID, updateProductByID, removeProductByID, getProductByUserID } = require( '../services/product.service' );
+const { insertProduct, getAllProducts, getProductsByID, updateProductByID, removeProductByID, getProductByUserID, getProductsByUserID } = require( '../services/product.service' );
 const { PATH_STORAGE } = require( '../middlewares/upload-file.middleware.js' );
 
 
@@ -36,11 +36,11 @@ const getProducts = async ( req = request, res = response ) => {
 }
 
 const getProductById = async ( req = request, res = response ) => {
-    const productId = req.params.id;
+    const userId = req.authUser.uid;
 
     try {
-        const data = await getProductByID( productId );
-
+        const data = await getProductsByUserId( userId );
+        console.log(data);
         res.status( 201 ).json({
             ok: true,
             path: `/products/${ productId }`,
@@ -60,11 +60,11 @@ const getProductById = async ( req = request, res = response ) => {
 }
 
 const getProductsByUserId = async ( req = request, res = request ) => {
-
+    console.log('estamos en getProductsByUserId en el backend ');
     const userId = req.authUser.uid;
 
     try {
-        const data = await getProductByUserID( userId );
+        const data = await getProductsByUserID( userId );
 
         console.log( data );
 
@@ -78,7 +78,7 @@ const getProductsByUserId = async ( req = request, res = request ) => {
         console.log( error );
         return res.status( 500 ).json({
             ok: false,
-            path: `/products/user/${ userId }`,
+            path: `/products/user/`,
             msg: 'Error al obtener el listado de productos por usuario'
         });    
     }

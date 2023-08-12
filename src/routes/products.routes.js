@@ -28,18 +28,20 @@ router.get(
     getProducts
 );
 
+
 // Ruta para obtener todos los productos de un usuario
 router.get( 
     '/user', 
-    validateToken,
+    validateToken, 
     getProductsByUserId
 );
 
 // Ruta para obtener producto por ID
-router.get( 
-    '/:id', 
-    getProductById
-);
+// router.get( 
+//     '/id/:id', 
+//     validateToken,
+//     getProductById
+// );
 
 // Ruta para crear producto (Restringida)
 router.post( 

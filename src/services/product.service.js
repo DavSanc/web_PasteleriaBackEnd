@@ -12,15 +12,19 @@ const getAllProducts = async () => {
 }
 
 const getProductByID = async ( productId ) => {
-    return await ProductModel.findOne({ _id: productId }, {
+    console.log('por acaaaaaaaaaa');
+    const data = await ProductModel.findOne({ _id: productId }, {
         userId: 0,
         createdAt: 0,
         updatedAt: 0,
         __v: 0
+
     });
+    console.log(data);
+    return data;
 }
 
-const getProductByUserID = async ( userId ) => {
+const getProductsByUserID = async ( userId ) => {
     return await ProductModel.find({ userId }, {
         createdAt: 0,
         updatedAt: 0,
@@ -47,5 +51,5 @@ module.exports = {
     getProductByID,
     removeProductByID,
     updateProductByID,
-    getProductByUserID
+    getProductsByUserID
 }
