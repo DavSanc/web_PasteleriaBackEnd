@@ -6,7 +6,7 @@ const
 
 
 // Ruta de almacenamiento para los archivos subidos
-let PATH_STORAGE = `${ process.cwd() }/storage`;      // --> Se debe crear el directorio 'storage' en el root del proyecto
+let PATH_STORAGE = `./public/storage/`;      // --> Se debe crear el directorio 'storage' en el root del proyecto
 
 // Configuración del almacenamiento de Multer
 const storage = multer.diskStorage({
